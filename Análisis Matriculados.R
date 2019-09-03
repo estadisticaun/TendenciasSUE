@@ -1,0 +1,1016 @@
+
+# ANÁLISIS MATRICULADOS
+
+# 1. Por instituciones ----
+
+IES <- Matriculados %>% group_by(YEAR, SEMESTRE, IES, SNIES_PROGRAMA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, IES) %>% summarise(PROGRAMAS = n(), Total = sum(Total)) %>% 
+  ungroup() %>% group_by(YEAR, SEMESTRE) %>% summarise(IES = n(), PROGRAMAS = sum(PROGRAMAS), Total = sum(Total)) %>%
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXIES = as.character(IES),
+         TEXPRO = as.character(PROGRAMAS),
+         TEXTOTAL = as.character(round(Total/1000, 0)),
+         ET1 = paste("(Prg", TEXPRO, ":", "Cob", paste0(TEXTOTAL, ")")))                   
+
+
+# Gráfico Estático
+
+GRA_IES <- IES%>% ggplot(aes(x = factor(Periodo), y = IES, group = 1))+
+  geom_line(size = 1) + 
+  ylim(0,300) +
+  ggtitle("Evolución Total Instituciones de Educación Superior (IES)") +
+  xlab("\n Periodo") + ylab("Total de instituciones")+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+GRA_IES
+
+# 2. Instituciones por Sector ----
+
+IES_SECTOR <- Matriculados %>% group_by(YEAR, SEMESTRE, SECTOR, IES, SNIES_PROGRAMA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, SECTOR, IES) %>% summarise(PROGRAMAS = n(), Total = sum(Total)) %>% 
+  ungroup() %>% group_by(YEAR, SEMESTRE, SECTOR) %>% summarise(IES = n(), PROGRAMAS = sum(PROGRAMAS), Total = sum(Total)) %>%
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXIES = as.character(IES),
+         TEXPRO = as.character(PROGRAMAS),
+         TEXTOTAL = as.character(round(Total/1000, 0)),
+         ET1 = paste("(Prg", TEXPRO, ":", "Cob", paste0(TEXTOTAL, ")")))                   
+
+
+# Gráfico Estático
+
+GRA_IES_SECTOR <- IES_SECTOR %>% ggplot(aes(x = factor(Periodo), y = IES, group = SECTOR, color = SECTOR))+
+  geom_line(size = 1) + 
+  ggtitle("Evolución Total de IES por Carácter \n ") +
+  xlab("\n Periodo") + ylab("Total de instituciones")+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_IES_SECTOR
+
+# 3. Instituciones por Caracter ----
+
+IES_CARACTER <- Matriculados %>% group_by(YEAR, SEMESTRE, CARÁCTER, IES, SNIES_PROGRAMA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, CARÁCTER, IES) %>% summarise(PROGRAMAS = n(), Total = sum(Total)) %>% 
+  ungroup() %>% group_by(YEAR, SEMESTRE, CARÁCTER) %>% summarise(IES = n(), PROGRAMAS = sum(PROGRAMAS), Total = sum(Total)) %>%
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXIES = as.character(IES),
+         TEXPRO = as.character(PROGRAMAS),
+         TEXTOTAL = as.character(round(Total/1000, 0)),
+         ET1 = paste("(Prg", TEXPRO, ":", "Cob", paste0(TEXTOTAL, ")")))                   
+
+
+# Gráfico Estático
+
+GRA_IES_CARACTER <- IES_CARACTER %>% ggplot(aes(x = factor(Periodo), y = IES, group = CARÁCTER, color = CARÁCTER))+
+  geom_line(size = 1) + 
+  ggtitle("Evolución Total de IES por Carácter \n ") +
+  xlab("\n Periodo") + ylab("Total de instituciones")+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+GRA_IES_CARACTER
+
+# # Gráfico Animado
+# 
+# GRA_IES <- IES%>% ggplot(aes(x = factor(Periodo), y = IES, group = CARÁCTER, color = CARÁCTER))+
+#   geom_line(size = 1) + geom_text(aes(label = TEXIES, hjust= 0.5, vjust=-1))+
+#   ggtitle("Evolución Total de IES por Carácter \n ") +
+#   xlab("\n Periodo") + ylab("Total de instituciones")+
+#   theme(axis.text.y = element_text(size = 13),
+#         axis.title.y = element_text(size = 13, face = "bold"),
+#         axis.text.x = element_text(size = 13, angle = 90),
+#         axis.title.x = element_text(size = 13, face = "bold"),
+#         plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+#         legend.position="right")
+#   
+# 
+# animate(GRA_IES + transition_reveal(Periodo), width = 1000, height = 700, duration = 30, start_pause = 10, end_pause = 30, width = 1100, height = 700)
+# 
+
+# 4. Cobertura ----
+
+Cobertura <- Matriculados %>% group_by(YEAR, SEMESTRE) %>% 
+  summarise(Total = sum(TOTAL)) %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+GRA_COBER <- Cobertura %>% ggplot(aes(x = factor(Periodo), y = (Total/1000), group = 1))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Matriculados en IES \n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 2500)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER
+
+# 5. Cobertura por Sector ----
+
+COBER_SECTOR <- Matriculados %>% group_by(YEAR, SEMESTRE, SECTOR) %>% 
+  summarise(Total = sum(TOTAL)) %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+GRA_COBER_SECTOR <- COBER_SECTOR %>% ggplot(aes(x = factor(Periodo), y = (Total/1000), group = SECTOR, colour = SECTOR))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Matriculados en IES por Sector\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 1300)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER_SECTOR
+
+# 6. Cobertura por Caracter ----
+
+COBER_CARACTER <- Matriculados %>% group_by(YEAR, SEMESTRE, CARÁCTER) %>% 
+  summarise(Total = sum(TOTAL)) %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+GRA_COBER_CARACTER <- COBER_CARACTER %>% ggplot(aes(x = factor(Periodo), y = (Total/1000), group = CARÁCTER, colour = CARÁCTER))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Matriculados por Carácter de las IES\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 1300)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER_CARACTER
+
+
+# 7. Cobertura por Caracter y Sector ----
+
+COBER_CARACTER_SECTOR <- Matriculados %>% group_by(YEAR, SEMESTRE, SECTOR, CARÁCTER) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(YEAR = as.integer(round(YEAR, 0)),
+         Periodo = as.integer(Periodo))
+
+GR_COBER_CARACTER_SECTOR <- COBER_CARACTER_SECTOR  %>% ggplot(aes(x = factor(Periodo), y = Total/1000, group = CARÁCTER, color = CARÁCTER, shape = SECTOR))+
+  geom_point(size = 10) +
+  ggtitle("Evolución Total de Matriculados por Carácter y Sector de las IES\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 750)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER_CARACTER_SECTOR <- animate(GR_COBER_CARACTER_SECTOR + transition_time(YEAR) +
+            labs(title = "Año: {frame_time}"), start_pause = 30, end_pause = 40, duration = 20, width = 1100, height = 700)
+
+
+GRA_COBER_CARACTER_SECTOR
+
+# 8. Cobertura por Nivel ----
+
+COBER_NIVEL <- Matriculados %>% group_by(YEAR, SEMESTRE, NIVEL) %>% 
+  summarise(Total = sum(TOTAL)) %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0)))
+
+GRA_COBER_NIVEL <- COBER_NIVEL %>% ggplot(aes(x = factor(Periodo), y = (Total/1000), group = NIVEL, colour = NIVEL))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Matriculados por Nivel de Formación\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 2300)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER_NIVEL
+
+# 9. Cobertura por Nivel y Sector ----
+
+COBER_NIVEL_SECTOR <- Matriculados %>% group_by(YEAR, SEMESTRE, SECTOR, NIVEL) %>% 
+  summarise(Total = sum(TOTAL)) %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo))
+
+  GR_COBER_NIVEL_SECTOR <- COBER_NIVEL_SECTOR  %>% ggplot(aes(x = factor(Periodo), y = Total/1000, group = NIVEL, color = NIVEL, shape = SECTOR))+
+  geom_point(size = 10) +
+  ggtitle("Evolución Total de Matriculados por Carácter y Sector de las IES\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 1500)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+  GRA_COBER_NIVEL_SECTOR <- animate(GR_COBER_NIVEL_SECTOR + transition_time(Periodo) +
+          labs(title = "Año: {frame_time}"), start_pause = 30, end_pause = 40, duration = 20, width = 1100, height = 700)
+
+  GRA_COBER_NIVEL_SECTOR
+
+# 10. Cobertura por Tipo - Pregrado ----
+
+  COBER_NIVEL_PRE <- Matriculados %>% filter(NIVEL == "PREGRADO") %>% group_by(YEAR, SEMESTRE, NIV_FOR) %>% 
+  summarise(Total = sum(TOTAL)) %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+  GRA_COBER_NIVEL_PRE <- COBER_NIVEL_PRE %>% ggplot(aes(x = factor(Periodo), y = (Total/1000), group = NIV_FOR, colour = NIV_FOR))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Matriculados por Nivel de Formación - Pregrado\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 1600)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+  GRA_COBER_NIVEL_PRE
+  
+# 11. Cobertura por Tipo y Sector - Pregrado ----
+
+  COBER_NIVEL_PRE_SECTOR <- Matriculados %>% filter(NIVEL == "PREGRADO") %>% group_by(YEAR, SEMESTRE, SECTOR, NIV_FOR) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         YEAR = as.integer(round(YEAR,0)))
+
+  GR_COBER_NIVEL_PRE <- COBER_NIVEL_PRE_SECTOR  %>% ggplot(aes(x = factor(Periodo), y = Total/1000, group = NIV_FOR, color = NIV_FOR, shape = SECTOR))+
+  geom_point(size = 10) +
+  ggtitle("Evolución Total de Matriculados por Tipo de formación y Sector de las IES - Pregrado\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 1100)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+
+  GRA_COBER_NIVEL_PRE_SECTOR <- animate(GR_COBER_NIVEL_PRE + transition_time(YEAR) +
+          labs(title = "Año: {frame_time}"), start_pause = 30, end_pause = 40, duration = 20, width = 1100, height = 700)
+
+
+  GRA_COBER_NIVEL_PRE_SECTOR
+
+# 12. Cobertura por Tipo - Postgrado ----
+
+  COBER_NIVEL_POS <- Matriculados %>% filter(NIVEL == "POSGRADO") %>% group_by(YEAR, SEMESTRE, NIV_FOR) %>% 
+  summarise(Total = sum(TOTAL)) %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+  GRA_COBER_NIVEL_POS <- COBER_NIVEL_POS %>% ggplot(aes(x = factor(Periodo), y = (Total/1000), group = NIV_FOR, colour = NIV_FOR))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Matriculados por Nivel de Formación - Postgrado\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 100)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+  GRA_COBER_NIVEL_POS
+  
+# 13. Cobertura por Tipo y Sector - Postgrado ----
+
+  COBER_NIVEL_POS_SECTOR <- Matriculados %>% filter(NIVEL == "POSGRADO") %>% group_by(YEAR, SEMESTRE, SECTOR, NIV_FOR) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(YEAR = as.integer(round(YEAR, 0)),
+         Periodo = as.integer(Periodo))
+
+  GR_COBER_NIVEL_POS_SECTOR <- COBER_NIVEL_POS_SECTOR  %>% ggplot(aes(x = factor(Periodo), y = Total/1000, group = NIV_FOR, color = NIV_FOR, shape = SECTOR))+
+  geom_point(size = 10) +
+  ggtitle("Evolución Total de Matriculados por Tipo de formación y Sector de las IES - Pregrado\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 100)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+  GRA_COBER_NIVEL_POS_SECTOR <- animate(GR_COBER_NIVEL_POS_SECTOR + transition_time(YEAR) +
+          labs(title = "Año: {frame_time}"), start_pause = 30, end_pause = 40, duration = 20, width = 1100, height = 700)
+
+  GRA_COBER_NIVEL_POS_SECTOR
+
+# 14. Cobertura por Sector - Doctorado ----
+
+COBER_DOC_SECTOR <- Matriculados %>% filter(NIVEL == "POSGRADO", NIV_FOR == "Doctorado") %>% group_by(YEAR, SEMESTRE, SECTOR, NIV_FOR) %>% 
+  summarise(Total = sum(TOTAL)) %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo))
+
+GRA_COBER_DOC_SECTOR <- COBER_DOC_SECTOR %>% ggplot(aes(x = factor(Periodo), y = (Total/1000), group = SECTOR, colour = SECTOR))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Matriculados por Nivel de Formación - Doctorado\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 5)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER_DOC_SECTOR
+
+# 15. Cobertura por Metodología ----
+
+COBER_METODOLOGIA <- Matriculados %>% group_by(YEAR, SEMESTRE, METODOLOGIA) %>% 
+  summarise(Total = sum(TOTAL)) %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+GRA_COBER_METODOLOGIA <- COBER_METODOLOGIA %>% ggplot(aes(x = factor(Periodo), y = (Total/1000), group = METODOLOGIA, colour = METODOLOGIA))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Matriculados por Metodología de Formación\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 2300)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER_METODOLOGIA
+
+# 16. Cobertura por Metodología y Sector ----
+
+COBER_METODOLOGIA_SECTOR <- Matriculados %>% group_by(YEAR, SEMESTRE, SECTOR, METODOLOGIA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(YEAR = as.integer(round(YEAR,0)),
+         Periodo = as.integer(Periodo))
+
+GR_COBER_METODOLOGIA_SECTOR <- COBER_METODOLOGIA_SECTOR  %>% ggplot(aes(x = factor(Periodo), y = Total/1000, group = METODOLOGIA, color = METODOLOGIA, shape = SECTOR))+
+  geom_point(size = 10) +
+  ggtitle("Evolución Total de Matriculados por Metodología y Sector de las IES\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 1500)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER_METODOLOGIA_SECTOR <- animate(GR_COBER_METODOLOGIA_SECTOR + transition_time(YEAR) +
+          labs(title = "Año: {frame_time}"), start_pause = 30, end_pause = 40, duration = 20, width = 1100, height = 700)
+
+GRA_COBER_METODOLOGIA_SECTOR
+
+# 17. Cobertura por Metodología - Distancia----
+
+COBER_METODOLOGIA_DISTANCIA <- Matriculados %>% filter(METODOLOGIA %in% c("Distancia (tradicional)", "Distancia (virtual)")) %>%  group_by(YEAR, SEMESTRE, METODOLOGIA) %>% 
+  summarise(Total = sum(TOTAL)) %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+GRA_COBER_METODOLOGIA_DISTANCIA <- COBER_METODOLOGIA_DISTANCIA %>% ggplot(aes(x = factor(Periodo), y = (Total/1000), group = METODOLOGIA, colour = METODOLOGIA))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Matriculados por Metodología a Distancia\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 300)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER_METODOLOGIA_DISTANCIA
+
+# 18. Cobertura por Áreas ----
+
+COBER_AREAS <- Matriculados %>% group_by(YEAR, SEMESTRE, AREA) %>% 
+  summarise(Total = sum(TOTAL)) %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+GRA_COBER_AREAS <- COBER_AREAS %>% ggplot(aes(x = factor(Periodo), y = (Total/1000), group = AREA, colour = AREA))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Matriculados por Áreas del Conocimiento\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 800)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER_AREAS
+
+# 19. Cobertura por Áreas y Sector ----
+
+COBER_AREAS_SECTOR <- Matriculados %>% group_by(YEAR, SEMESTRE, SECTOR, AREA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         YEAR = as.integer(round(YEAR, 0)))
+
+GR_COBER_AREAS_SECTOR <- COBER_AREAS_SECTOR  %>% ggplot(aes(x = factor(Periodo), y = Total/1000, group = SECTOR, color = SECTOR, shape = AREA))+
+  geom_point(size = 10) +
+  scale_shape_manual(values=c(15, 16, 17, 3, 7, 8, 13, 11)) +
+  ggtitle("Evolución Total de Matriculados por Áreas del Conocimiento y Sector de las IES\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 470)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER_AREAS_SECTOR <- animate(GR_COBER_AREAS_SECTOR + transition_time(YEAR) +
+          labs(title = "Año: {frame_time}"), start_pause = 20, end_pause = 50, duration = 40, width = 1100, height = 700)
+
+GRA_COBER_AREAS_SECTOR
+
+# 20. Cobertura por Áreas - Pregrado ----
+
+COBER_AREAS_PRE <- Matriculados %>% filter(NIVEL == "PREGRADO") %>% group_by(YEAR, SEMESTRE, AREA) %>% 
+  summarise(Total = sum(TOTAL)) %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+GRA_COBER_AREAS_PRE <- COBER_AREAS_PRE %>% ggplot(aes(x = factor(Periodo), y = (Total/1000), group = AREA, colour = AREA))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Matriculados por Áreas del Conocimiento - Pregrado\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 800)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER_AREAS_PRE
+
+# 21. Cobertura por Áreas y Sector - Pregrado ----
+
+COBER_AREAS_PRE_SECTOR <- Matriculados %>% filter(NIVEL == "PREGRADO") %>%  group_by(YEAR, SEMESTRE, SECTOR, AREA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         YEAR = as.integer(round(YEAR, 0)))
+
+GR_COBER_AREAS_PRE_SECTOR <- COBER_AREAS_PRE_SECTOR %>% ggplot(aes(x = factor(Periodo), y = Total/1000, group = SECTOR, color = SECTOR, shape = AREA))+
+  geom_point(size = 10) +
+  scale_shape_manual(values=c(15, 16, 17, 3, 7, 8, 13, 11)) +
+  ggtitle("Evolución Total de Matriculados por Áreas del Conocimiento y Sector de las IES - Pregrado\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 470)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER_AREAS_PRE_SECTOR <- animate(GR_COBER_AREAS_PRE_SECTOR + transition_time(YEAR) +
+          labs(title = "Año: {frame_time}"), start_pause = 20, end_pause = 50, duration = 40, width = 1100, height = 700)
+
+
+GRA_COBER_AREAS_PRE_SECTOR
+
+# 22. Cobertura por Áreas - Postgrado ----
+
+COBER_AREAS_POS <- Matriculados %>% filter(NIVEL == "POSGRADO") %>% group_by(YEAR, SEMESTRE, AREA) %>% 
+  summarise(Total = sum(TOTAL)) %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+GRA_COBER_AREAS_POS <- COBER_AREAS_POS %>% ggplot(aes(x = factor(Periodo), y = (Total/1000), group = AREA, colour = AREA))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Matriculados por Áreas del Conocimiento - Postgrado\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 60)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER_AREAS_POS
+
+# 23. Cobertura por Áreas y Sector - Postgrado ----
+
+COBER_AREAS_POS_SECTOR <- Matriculados %>% filter(NIVEL == "POSGRADO") %>%  group_by(YEAR, SEMESTRE, SECTOR, AREA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         YEAR = as.integer(round(YEAR, 0)))
+
+GR_COBER_AREAS_POS_SECTOR <- COBER_AREAS_POS_SECTOR  %>% ggplot(aes(x = factor(Periodo), y = Total/1000, group = SECTOR, color = SECTOR, shape = AREA))+
+  geom_point(size = 10) +
+  scale_shape_manual(values=c(15, 16, 17, 3, 7, 8, 13, 11)) +
+  ggtitle("Evolución Total de Matriculados por Áreas del Conocimiento y Sector de las IES - Pregrado\n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Matriculados (en miles) \n")+ ylim(0, 50)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_COBER_AREAS_POS_SECTOR <- animate(GR_COBER_AREAS_POS_SECTOR + transition_time(YEAR) +
+          labs(title = "Año: {frame_time}"), start_pause = 20, end_pause = 50, duration = 40, width = 1100, height = 700)
+
+GRA_COBER_AREAS_POS_SECTOR
+
+# 24. Programas Académicos ----
+
+PROG <- Matriculados %>% group_by(YEAR, SEMESTRE, SNIES_PROGRAMA) %>% 
+  summarise(Total = n()) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE) %>% summarise(Total = n()) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+GRA_PROG <- PROG %>% ggplot(aes(x = factor(Periodo), y = Total, group = 1))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Programas Académicos en IES \n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Programas Académicos\n")+ ylim(0, 11000)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_PROG
+
+# 25. Programas Acad. por Sector ----
+
+PROG_SECTOR <- Matriculados %>% group_by(YEAR, SEMESTRE, SECTOR, SNIES_PROGRAMA) %>% 
+  summarise(Total = n()) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, SECTOR) %>% summarise(Total = n()) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+
+GRA_PROG_SECTOR <- PROG_SECTOR %>% ggplot(aes(x = factor(Periodo), y = Total, group = SECTOR, colour = SECTOR))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Programas Académicos Por Sector de las IES \n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Programas Académicos\n")+ ylim(0, 11000)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_PROG_SECTOR
+
+# 26. Comb. SECTOR VS CARACTER (Oficial - Privada) ----
+
+PROG_SECTOR_CARACTER <- Matriculados %>% group_by(YEAR, SEMESTRE, SECTOR, CARÁCTER, IES, SNIES_PROGRAMA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, SECTOR, CARÁCTER, IES) %>% summarise(PROGRAMAS = n(), Total = sum(Total)) %>% 
+  ungroup() %>% group_by(YEAR, SEMESTRE, SECTOR, CARÁCTER) %>% summarise(IES = n(), PROGRAMAS = sum(PROGRAMAS), Total = sum(Total)) %>%
+  ungroup() %>%
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         YEAR = as.integer(round(YEAR),0),
+         TEXIES = as.character(IES),
+         TEXPRO = as.character(PROGRAMAS),
+         TEXTOTAL = as.character(round(Total/1000, 0)),
+         ET1 = paste("(Prg", TEXPRO, ":", "Cob", paste0(TEXTOTAL, ")"))) 
+
+
+GR_PROG_SECTOR_CARACTER <- PROG_SECTOR_CARACTER %>% ggplot(aes(x = PROGRAMAS, y = Total/1000, group = CARÁCTER, color = CARÁCTER, shape = SECTOR))+
+  geom_point(size = 10) + 
+  ylim(0, 800) + xlim(0, 4500)+
+  ggtitle("Evolución Total de Matriculados y Programas por Sector y Carácter de las IES \n (Periodo 2000-2017) \n") +
+  xlab("\n Total de programas académicos") + ylab("Total de matriculados (en miles) \n")+ 
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_PROG_SECTOR_CARACTER <- animate(GR_PROG_SECTOR_CARACTER + transition_time(YEAR) +
+          labs(title = "Año: {frame_time}"), start_pause = 15, end_pause = 40, duration = 40, width = 1100, height = 700)
+
+GRA_PROG_SECTOR_CARACTER
+
+# 27. Programas Acad. por Nivel ----
+
+PROG_NIVEL <- Matriculados %>% group_by(YEAR, SEMESTRE, NIVEL, SNIES_PROGRAMA) %>% 
+  summarise(Total = n()) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, NIVEL) %>% summarise(Total = n()) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+
+GRA_PROG_NIVEL <- PROG_NIVEL %>% ggplot(aes(x = factor(Periodo), y = Total, group = NIVEL, colour = NIVEL))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Programas Académicos Por Sector de las IES \n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Programas Académicos\n")+ ylim(0,7000)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_PROG_NIVEL
+
+# 28. Comb. SECTOR VS NIVEL (Oficial - Privada) ----
+
+GR_PROG_NIVEL_SECTOR <- Matriculados %>% group_by(YEAR, SEMESTRE, SECTOR, NIVEL, SNIES_PROGRAMA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, SECTOR, NIVEL) %>% summarise(PROGRAMAS = n(), Total = sum(Total)) %>% 
+  ungroup() %>%
+    unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         YEAR = as.integer(YEAR),
+         TEXPRO = as.character(PROGRAMAS),
+         TEXTOTAL = as.character(round(Total/1000, 0)),
+         ET1 = paste("(Prg", TEXPRO, ":", "Cob", paste0(TEXTOTAL, ")"))) %>% 
+         ggplot(aes(x = PROGRAMAS, y = Total/1000, group = NIVEL, color = NIVEL, shape = SECTOR))+
+         geom_point(size = 10) + 
+         ylim(0, 1300) + xlim(0, 4000) +
+        ggtitle("Evolución cobertura y programas académicos en Educación Superior \n por sector y nivel de formación \n ") +
+        xlab("Total Programas Académicos") + ylab("Total Matriculados (en miles)") +
+    theme(plot.title = element_text(hjust = 0.5, size=16, face="bold.italic"),
+      axis.title.x = element_text(size=16, face="bold"),
+      axis.title.y = element_text(size=16, face="bold")
+    )
+
+GRA_PROG_NIVEL_SECTOR <- animate(GR_PROG_NIVEL_SECTOR + transition_time(YEAR) +
+            labs(title = "Año: {frame_time}"), start_pause = 15, end_pause = 40, duration = 40, width = 1100, height = 700)
+  
+GRA_PROG_NIVEL_SECTOR
+
+# 29. Programas Acad. por Metodología ----
+    
+PROG_METODOLOGIA <- Matriculados %>% group_by(YEAR, SEMESTRE, METODOLOGIA, SNIES_PROGRAMA) %>% 
+      summarise(Total = n()) %>% ungroup() %>% 
+      group_by(YEAR, SEMESTRE, METODOLOGIA) %>% summarise(Total = n()) %>% ungroup() %>% 
+      unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+      mutate(Periodo = as.integer(Periodo),
+             TEXTOTAL = as.character(round(Total/1000, 0))) 
+    
+    
+GRA_PROG_METODOLOGIA <- PROG_METODOLOGIA %>% ggplot(aes(x = factor(Periodo), y = Total, group = METODOLOGIA, colour = METODOLOGIA))+
+      geom_line(size = 1) +
+      ggtitle("Evolución Total de Programas Académicos Por Metodología \n (Periodo 2000-2017) \n") +
+      xlab("\n Periodo") + ylab("Total Programas Académicos \n")+ ylim(0,10000)+
+      theme(axis.text.y = element_text(size = 13),
+            axis.title.y = element_text(size = 13, face = "bold"),
+            axis.text.x = element_text(size = 13, angle = 90),
+            axis.title.x = element_text(size = 13, face = "bold"),
+            plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+            legend.position="right")        
+
+GRA_PROG_METODOLOGIA
+
+# 30. Comb. SECTOR VS METODOLOGÍA (Oficial - Privada) ----
+
+GR_PROG_METODOLOGIA_SECTOR <- Matriculados %>% group_by(YEAR, SEMESTRE, SECTOR, METODOLOGIA, SNIES_PROGRAMA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, SECTOR, METODOLOGIA) %>% summarise(PROGRAMAS = n(), Total = sum(Total)) %>% 
+  ungroup() %>%
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         YEAR = as.integer(YEAR),
+         TEXPRO = as.character(PROGRAMAS),
+         TEXTOTAL = as.character(round(Total/1000, 0)),
+         ET1 = paste("(Prg", TEXPRO, ":", "Cob", paste0(TEXTOTAL, ")"))) %>% 
+  ggplot(aes(x = PROGRAMAS, y = Total/1000, group = METODOLOGIA, color = METODOLOGIA, shape = SECTOR))+
+  geom_point(size = 10) + 
+  ylim(0, 1100) + xlim(0, 8000) +
+  ggtitle("Evolución cobertura y programas académicos en Educación Superior \n por sector y metodología de formación \n ") +
+  xlab("Total Programas Académicos") + ylab("Total Matriculados (en miles)") +
+  theme(plot.title = element_text(hjust = 0.5, size=16, face="bold.italic"),
+        axis.title.x = element_text(size=16, face="bold"),
+        axis.title.y = element_text(size=16, face="bold")
+  )
+
+GRA_PROG_METODOLOGIA_SECTOR <- animate(GR_PROG_METODOLOGIA_SECTOR + transition_time(YEAR) +
+          labs(title = "Año: {frame_time}"), start_pause = 15, end_pause = 40, duration = 40, width = 1100, height = 700)
+
+GRA_PROG_METODOLOGIA_SECTOR
+
+# 31. Programas Acad. Pregrado ----
+
+PROG_PREGRADO <- Matriculados %>% filter(NIVEL == "PREGRADO") %>%  group_by(YEAR, SEMESTRE, NIV_FOR, SNIES_PROGRAMA) %>% 
+  summarise(Total = n()) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, NIV_FOR) %>% summarise(Total = n()) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+
+GRA_PROG_PREGRADO <- PROG_PREGRADO %>% ggplot(aes(x = factor(Periodo), y = Total, group = NIV_FOR, colour = NIV_FOR))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Programas Académicos Por Nivel de Formación de las IES - Pregrado \n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Programas Académicos \n")+ ylim(0, 4500)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_PROG_PREGRADO
+
+# 32. Comb. SECTOR VS PREGRADO (Oficial - Privada) ----
+
+PROG_PREGRADO_SECTOR <- Matriculados %>% filter(NIVEL == "PREGRADO") %>% group_by(YEAR, SEMESTRE, SECTOR, NIV_FOR, IES, SNIES_PROGRAMA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, SECTOR, NIV_FOR, IES) %>% summarise(PROGRAMAS = n(), Total = sum(Total)) %>% 
+  ungroup() %>% group_by(YEAR, SEMESTRE, SECTOR, NIV_FOR) %>% summarise(IES = n(), PROGRAMAS = sum(PROGRAMAS), Total = sum(Total)) %>%
+  ungroup() %>%
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         YEAR = as.integer(round(YEAR),0),
+         TEXIES = as.character(IES),
+         TEXPRO = as.character(PROGRAMAS),
+         TEXTOTAL = as.character(round(Total/1000, 0)),
+         ET1 = paste("(Prg", TEXPRO, ":", "Cob", paste0(TEXTOTAL, ")"))) 
+
+
+GR_PROG_PREGRADO_SECTOR <- PROG_PREGRADO_SECTOR %>% ggplot(aes(x = PROGRAMAS, y = Total/1000, group = NIV_FOR, color = NIV_FOR, shape = SECTOR))+
+  geom_point(size = 10) + 
+  # geom_text(aes(label = ET1, hjust= 0.5, vjust=-1, size = 400000))+
+  # theme(legend.position="bottom") +
+  ylim(0, 1000) + xlim(0, 3000)+
+  ggtitle("Evolución Total de Matriculados y Programas por Sector y Carácter de las IES \n (Periodo 2000-2017) \n") +
+  xlab("\n Total de programas académicos") + ylab("Total de matriculados (en miles) \n")+ 
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_PROG_PREGRADO_SECTOR <- animate(GR_PROG_PREGRADO_SECTOR + transition_time(YEAR) +
+          labs(title = "Año: {frame_time}"), start_pause = 15, end_pause = 30, duration = 40, width = 1100, height = 700)
+
+GRA_PROG_PREGRADO_SECTOR
+
+# 33. Programas Acad. Postgrado ----
+
+PROG_POSTGRADO <- Matriculados %>% filter(NIVEL == "POSGRADO") %>%  group_by(YEAR, SEMESTRE, NIV_FOR, SNIES_PROGRAMA) %>% 
+  summarise(Total = n()) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, NIV_FOR) %>% summarise(Total = n()) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+
+GRA_PROG_POSTGRADO <- PROG_POSTGRADO %>% ggplot(aes(x = factor(Periodo), y = Total, group = NIV_FOR, colour = NIV_FOR))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Programas Académicos Por Nivel de Formación de las IES - Postgrado \n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Programas Académicos\n")+ ylim(0, 2600)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_PROG_POSTGRADO
+
+# 34. Comb. SECTOR VS POSGRADO (Oficial - Privada) ----
+
+PROG_POSTGRADO_SECTOR <- Matriculados %>% filter(NIVEL == "POSGRADO") %>% group_by(YEAR, SEMESTRE, SECTOR, NIV_FOR, IES, SNIES_PROGRAMA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, SECTOR, NIV_FOR, IES) %>% summarise(PROGRAMAS = n(), Total = sum(Total)) %>% 
+  ungroup() %>% group_by(YEAR, SEMESTRE, SECTOR, NIV_FOR) %>% summarise(IES = n(), PROGRAMAS = sum(PROGRAMAS), Total = sum(Total)) %>%
+  ungroup() %>%
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         YEAR = as.integer(round(YEAR),0),
+         TEXIES = as.character(IES),
+         TEXPRO = as.character(PROGRAMAS),
+         TEXTOTAL = as.character(round(Total/1000, 0)),
+         ET1 = paste("(Prg", TEXPRO, ":", "Cob", paste0(TEXTOTAL, ")"))) 
+
+
+GR_PROG_POSTGRADO_SECTOR <- PROG_POSTGRADO_SECTOR %>% ggplot(aes(x = PROGRAMAS, y = Total/1000, group = NIV_FOR, color = NIV_FOR, shape = SECTOR))+
+  geom_point(size = 10) + 
+  # geom_text(aes(label = ET1, hjust= 0.5, vjust=-1, size = 400000))+
+  # theme(legend.position="bottom") +
+  ylim(0, 80) + xlim(0, 2000)+
+  ggtitle("Evolución Total de Matriculados y Programas por Sector y Carácter de las IES \n (Periodo 2000-2017) \n") +
+  xlab("\n Total de programas académicos") + ylab("Total de matriculados (en miles) \n")+ 
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_PROG_POSTGRADO_SECTOR <- animate(GR_PROG_POSTGRADO_SECTOR + transition_time(YEAR) +
+          labs(title = "Año: {frame_time}"), start_pause = 15, end_pause = 30, duration = 40, width = 1100, height = 700)
+
+GRA_PROG_POSTGRADO_SECTOR
+
+# 35. Programas Acad. por Áreas ----
+
+PROG_AREAS <- Matriculados %>% group_by(YEAR, SEMESTRE, AREA, SNIES_PROGRAMA) %>% 
+  summarise(Total = n()) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, AREA) %>% summarise(Total = n()) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+
+GRA_PROG_AREAS <- PROG_AREAS %>% ggplot(aes(x = factor(Periodo), y = Total, group = AREA, colour = AREA))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Programas Académicos Por Áreas del Conocimiento \n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Programas Académicos\n")+ ylim(0,3000)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_PROG_AREAS
+
+# 36. Comb. SECTOR VS ÁREAS (Oficial - Privada) ----
+
+GR_PROG_AREAS_SECTOR <- Matriculados %>% group_by(YEAR, SEMESTRE, SECTOR, AREA, SNIES_PROGRAMA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, SECTOR, AREA) %>% summarise(PROGRAMAS = n(), Total = sum(Total)) %>% 
+  ungroup() %>%
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         YEAR = as.integer(YEAR),
+         TEXPRO = as.character(PROGRAMAS),
+         TEXTOTAL = as.character(round(Total/1000, 0)),
+         ET1 = paste("(Prg", TEXPRO, ":", "Cob", paste0(TEXTOTAL, ")"))) %>% 
+  ggplot(aes(x = PROGRAMAS, y = Total/1000, group = AREA, color = SECTOR, shape = AREA))+
+  geom_point(size = 10) + 
+  scale_shape_manual(values=c(15, 16, 17, 3, 7, 8, 13, 11)) +
+  ylim(0, 500) + xlim(0, 2500) +
+  ggtitle("Evolución cobertura y programas académicos en Educación Superior \n por sector y Áreas del Conocimiento\n ") +
+  xlab("Total Programas Académicos") + ylab("Total Matriculados (en miles)") +
+  theme(plot.title = element_text(hjust = 0.5, size=16, face="bold.italic"),
+        axis.title.x = element_text(size=16, face="bold"),
+        axis.title.y = element_text(size=16, face="bold")
+  )
+
+GRA_PROG_AREAS_SECTOR <- animate(GR_PROG_AREAS_SECTOR + transition_time(YEAR) +
+          labs(title = "Año: {frame_time}"), start_pause = 15, end_pause = 40, duration = 40, width = 1100, height = 700)
+
+GRA_PROG_AREAS_SECTOR
+
+# 37. Programas Acad. Áreas PRE ----
+
+PROG_AREAS_PREGRADO <- Matriculados %>% filter(NIVEL == "PREGRADO") %>%  group_by(YEAR, SEMESTRE, AREA, SNIES_PROGRAMA) %>% 
+  summarise(Total = n()) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, AREA) %>% summarise(Total = n()) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+
+GRA_PROG_AREAS_PREGRADO <- PROG_AREAS_PREGRADO %>% ggplot(aes(x = factor(Periodo), y = Total, group = AREA, colour = AREA))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Programas Académicos Por Áreas del Conocimiento - Pregrado \n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Programas Académicos\n")+ ylim(0,1800)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+GRA_PROG_AREAS_PREGRADO
+
+# 38. Comb. SECTOR VS ÁREAS PRE (Oficial - Privada) ----
+
+GR_PROG_AREAS_PREGRADO_SECTOR <- Matriculados %>% filter(NIVEL == "PREGRADO") %>%  group_by(YEAR, SEMESTRE, SECTOR, AREA, SNIES_PROGRAMA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, SECTOR, AREA) %>% summarise(PROGRAMAS = n(), Total = sum(Total)) %>% 
+  ungroup() %>%
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         YEAR = as.integer(YEAR),
+         TEXPRO = as.character(PROGRAMAS),
+         TEXTOTAL = as.character(round(Total/1000, 0)),
+         ET1 = paste("(Prg", TEXPRO, ":", "Cob", paste0(TEXTOTAL, ")"))) %>% 
+  ggplot(aes(x = PROGRAMAS, y = Total/1000, group = AREA, color = SECTOR, shape = AREA))+
+  geom_point(size = 10) + 
+  scale_shape_manual(values=c(15, 16, 17, 3, 7, 8, 13, 11)) +
+  ylim(0, 450) + xlim(0, 1500) +
+  ggtitle("Evolución cobertura y programas académicos en Educación Superior \n por sector y Áreas del Conocimiento - Pregrado\n ") +
+  xlab("Total Programas Académicos") + ylab("Total Matriculados (en miles)") +
+  theme(plot.title = element_text(hjust = 0.5, size=16, face="bold.italic"),
+        axis.title.x = element_text(size=16, face="bold"),
+        axis.title.y = element_text(size=16, face="bold")
+  )
+
+GRA_PROG_AREAS_PREGRADO_SECTOR <- animate(GR_PROG_AREAS_PREGRADO_SECTOR + transition_time(YEAR) +
+          labs(title = "Año: {frame_time}"), start_pause = 15, end_pause = 40, duration = 40, width = 1100, height = 700)
+
+GRA_PROG_AREAS_PREGRADO_SECTOR
+
+# 39. Programas Acad. Áreas POS ----
+
+PROG_AREAS_POSTGRADO <- Matriculados %>% filter(NIVEL == "POSGRADO") %>%  group_by(YEAR, SEMESTRE, AREA, SNIES_PROGRAMA) %>% 
+  summarise(Total = n()) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, AREA) %>% summarise(Total = n()) %>% ungroup() %>% 
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         TEXTOTAL = as.character(round(Total/1000, 0))) 
+
+
+GRA_PROG_AREAS_POSTGRADO <- PROG_AREAS_POSTGRADO %>% ggplot(aes(x = factor(Periodo), y = Total, group = AREA, colour = AREA))+
+  geom_line(size = 1) +
+  ggtitle("Evolución Total de Programas Académicos Por Áreas del Conocimiento - Postgrado \n (Periodo 2000-2017) \n") +
+  xlab("\n Periodo") + ylab("Total Programas Académicos (en miles) \n")+ ylim(0,1200)+
+  theme(axis.text.y = element_text(size = 13),
+        axis.title.y = element_text(size = 13, face = "bold"),
+        axis.text.x = element_text(size = 13, angle = 90),
+        axis.title.x = element_text(size = 13, face = "bold"),
+        plot.title = element_text(hjust = 0.5,  face="bold", color="black", size=16),
+        legend.position="right")
+
+
+GRA_PROG_AREAS_POSTGRADO
+
+# 40. Comb. SECTOR VS ÁREAS PRE (Oficial - Privada) ----
+
+GR_PROG_AREAS_POSTGRADO_SECTOR <- Matriculados %>% filter(NIVEL == "POSGRADO") %>%  group_by(YEAR, SEMESTRE, SECTOR, AREA, SNIES_PROGRAMA) %>% 
+  summarise(Total = sum(TOTAL)) %>% ungroup() %>% 
+  group_by(YEAR, SEMESTRE, SECTOR, AREA) %>% summarise(PROGRAMAS = n(), Total = sum(Total)) %>% 
+  ungroup() %>%
+  unite("Periodo", c(YEAR, SEMESTRE), sep = "", remove = FALSE) %>% 
+  mutate(Periodo = as.integer(Periodo),
+         YEAR = as.integer(YEAR),
+         TEXPRO = as.character(PROGRAMAS),
+         TEXTOTAL = as.character(round(Total/1000, 0)),
+         ET1 = paste("(Prg", TEXPRO, ":", "Cob", paste0(TEXTOTAL, ")"))) %>% 
+  ggplot(aes(x = PROGRAMAS, y = Total/1000, group = AREA, color = SECTOR, shape = AREA))+
+  geom_point(size = 10) + 
+  scale_shape_manual(values=c(15, 16, 17, 3, 7, 8, 13, 11)) +
+  ylim(0, 50) + xlim(0, 900) +
+  ggtitle("Evolución cobertura y programas académicos en Educación Superior \n por sector y Áreas del Conocimiento - Postgrado\n ") +
+  xlab("Total Programas Académicos") + ylab("Total Matriculados (en miles)") +
+  theme(plot.title = element_text(hjust = 0.5, size=16, face="bold.italic"),
+        axis.title.x = element_text(size=16, face="bold"),
+        axis.title.y = element_text(size=16, face="bold")
+  )
+
+GRA_PROG_AREAS_POSTGRADO_SECTOR <- animate(GR_PROG_AREAS_POSTGRADO_SECTOR + transition_time(YEAR) +
+          labs(title = "Año: {frame_time}"), start_pause = 15, end_pause = 40, duration = 40, width = 1100, height = 700)
+
+GRA_PROG_AREAS_POSTGRADO_SECTOR
+
+
+
+
+
+
+
+
+
+
+
+
+  

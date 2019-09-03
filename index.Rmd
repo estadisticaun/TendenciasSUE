@@ -1,0 +1,41 @@
+---
+title: "TENDENCIAS SUE"
+author: "<br/> Tendencias Estadísticas Básicas Para Definición Modelo de Financiación SUE <br/> <br/> <br/> <br/> Grupo G4 <br/> <br/> Universidad Nacional de Colombia <br/> Universidad de Antioquia <br/> Universidad del Valle <br/> Universidad Industrial de Santander"
+date: "03/09/2019"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+
+source("Importar Microdatos.R", encoding = 'UTF-8')
+source("Mapas Matriculados.R", encoding = 'UTF-8')
+
+```
+# Objetivo de la presentación
+
+Contar con información sobre el comportamiento de las principales estadísticas del sector de la educación superior en Colombia en general y del Sistema Universitario Estatal SUE, que sirvan como base para la construcción de los diferentes factores de la propuesta de financiación a cargo del SUE.  
+
+---
+## Consideraciones para el uso adecuado de la presentación
+
+  1.	<p style="font-size:100%;"> Dar click en la letra H para desplegar las distintas opciones de navegación que ofrece la presentación.</p>
+  
+  2.	<p style="font-size:100%;"> Dar click en la tecla Esc para salir del modo "Pantalla Completa"</p>
+  
+  3.	<p style="font-size:100%;"> La opción “Pantalla Completa” presenta problemas en los dispositivos móviles Ipad e Iphone de Apple.</p>
+  
+  4.	<p style="font-size:100%;"> Buena parte de los gráficos contenidos en las distintas diapositivas pueden ser “manipulados” al hacer click en las distintas opciones/etiquetas que los acompañan.</p>
+  
+---
+
+# <h3> Municipios de Ubicación de las IES </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+
+MAP_IES
+
+```
+
