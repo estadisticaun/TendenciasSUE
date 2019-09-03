@@ -12,14 +12,16 @@ options(htmltools.dir.version = FALSE)
 
 source("Importar Microdatos.R", encoding = 'UTF-8')
 source("Mapas Matriculados.R", encoding = 'UTF-8')
+source("Análisis Matriculados.R", encoding = 'UTF-8')
+
 
 ```
-# Objetivo de la presentación
+# <h3> Objetivo de la presentación </h3>
 
 Contar con información sobre el comportamiento de las principales estadísticas del sector de la educación superior en Colombia en general y del Sistema Universitario Estatal SUE, que sirvan como base para la construcción de los diferentes factores de la propuesta de financiación a cargo del SUE.  
 
 ---
-## Consideraciones para el uso adecuado de la presentación
+<h3> Consideraciones para el uso adecuado de la presentación </h3>
 
   1.	<p style="font-size:100%;"> Dar click en la letra H para desplegar las distintas opciones de navegación que ofrece la presentación.</p>
   
@@ -28,14 +30,98 @@ Contar con información sobre el comportamiento de las principales estadísticas
   3.	<p style="font-size:100%;"> La opción “Pantalla Completa” presenta problemas en los dispositivos móviles Ipad e Iphone de Apple.</p>
   
   4.	<p style="font-size:100%;"> Buena parte de los gráficos contenidos en las distintas diapositivas pueden ser “manipulados” al hacer click en las distintas opciones/etiquetas que los acompañan.</p>
-  
----
 
-# <h3> Municipios de Ubicación de las IES </h3>
+---
+# <h3> Evolución Total Instituciones de Educación Superior (IES) </h3>
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-
-MAP_IES
-
+GRA_IES
 ```
 
+---
+# <h3> Evolución Total de IES por Sector </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_IES_SECTOR
+```
+
+---
+# <h3> Evolución Total de IES por Carácter </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_IES_CARACTER 
+```
+
+---
+# <h3> Municipios de Ubicación de las IES en Colombia </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+MAP_IES
+```
+
+---
+# <h3> Evolución Total de Matriculados en las IES </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER 
+```
+
+---
+# <h3> Evolución Total Programas Académicos en las IES </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG
+```
+
+---
+<h3> Municipios de Localización de los Programas Académicos en Colombia </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+MAP_PROGRAMAS
+```
+
+---
+# <h3> Evolución Total de Matriculados en IES por Sector </h3>
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_SECTOR
+```
+
+---
+# <h3> Evolución Total de Programas Académicos en las IES por Sector </h3>
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_SECTOR
+```
+
+---
+<h3> Municipios de Localización de los Programas Académicos en Colombia - IES Privadas </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+MAP_PROGRAMAS_PRIV
+```
+
+---
+<h3> Municipios de Localización de los Programas Académicos en Colombia - IES Oficiales </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+MAP_PROGRAMAS_OFIC
+```
+
+---
+# <h3> Evolución Total de Matriculados por Carácter de las IES </h3>
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_CARACTER
+```
+
+---
+# <h3> Evolución Total Matriculados por Sector y Carácter de las IES</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_CARACTER_SECTOR
+```
+
+---
+# <h3> Evolución Total de Matriculados y Programas Académicos por Carácter y Sector de las IES</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_SECTOR_CARACTER
+```
