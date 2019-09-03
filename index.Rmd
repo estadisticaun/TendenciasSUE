@@ -1,7 +1,7 @@
 ---
 title: "TENDENCIAS SUE"
-author: "<br/> Tendencias Estadísticas Básicas Para Definición Modelo de Financiación SUE <br/> <br/> <br/> <br/> Grupo G4 <br/> <br/> Universidad Nacional de Colombia <br/> Universidad de Antioquia <br/> Universidad del Valle <br/> Universidad Industrial de Santander"
-date: "03/09/2019"
+author: "<h4> <br/> Tendencias Estadísticas Básicas Para Definición Modelo de Financiación SUE <br/> <br/> <br/> <br/> Grupo G4 <br/> <br/> Universidad Nacional de Colombia <br/> Universidad de Antioquia <br/> Universidad del Valle <br/> Universidad Industrial de Santander <br/> <br/> </h4>"
+date: "<h4> Ultima Actualización: 03/09/2019 </h4>"
 ---
 
 ```{r setup, include=FALSE}
@@ -16,20 +16,22 @@ source("Análisis Matriculados.R", encoding = 'UTF-8')
 
 
 ```
-# <h3> Objetivo de la presentación </h3>
+# <h3> Objetivo de la presentación <br/> </h3>
 
-Contar con información sobre el comportamiento de las principales estadísticas del sector de la educación superior en Colombia en general y del Sistema Universitario Estatal SUE, que sirvan como base para la construcción de los diferentes factores de la propuesta de financiación a cargo del SUE.  
+<br/> Contar con información sobre el comportamiento de las principales estadísticas del sector de la educación superior en Colombia en general y del Sistema Universitario Estatal SUE, en particular, que sirvan como base para la discución en el proceso de construcción de los diferentes factores que conforman la propuesta de financiación del SUE a mediano y largo plazo.  
 
 ---
 <h3> Consideraciones para el uso adecuado de la presentación </h3>
 
+<br/>
+
   1.	<p style="font-size:100%;"> Dar click en la letra H para desplegar las distintas opciones de navegación que ofrece la presentación.</p>
   
-  2.	<p style="font-size:100%;"> Dar click en la tecla Esc para salir del modo "Pantalla Completa"</p>
+  2.	<p style="font-size:100%;"> Dar click en la tecla Esc para salir del modo "Pantalla Completa" (donde aplique)</p>
   
   3.	<p style="font-size:100%;"> La opción “Pantalla Completa” presenta problemas en los dispositivos móviles Ipad e Iphone de Apple.</p>
   
-  4.	<p style="font-size:100%;"> Buena parte de los gráficos contenidos en las distintas diapositivas pueden ser “manipulados” al hacer click en las distintas opciones/etiquetas que los acompañan.</p>
+  4.	<p style="font-size:100%;"> Usar la tecla F5 para retornar a la versión inicial de las diapositivas que contienen mapas e ilustraciones interactivas</p>
 
 ---
 # <h3> Evolución Total Instituciones de Educación Superior (IES) </h3>
@@ -124,4 +126,249 @@ GRA_COBER_CARACTER_SECTOR
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 GRA_PROG_SECTOR_CARACTER
+```
+
+---
+# <h3> Evolución Total de Matriculados por Nivel de Formación</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_NIVEL 
+```
+
+---
+# <h3>Evolución Total de Programas Académicos por Nivel de Formación</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_NIVEL 
+```
+
+---
+# <h3>Evolución Total de Matriculados por Nivel y Sector de las IES</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_NIVEL_SECTOR 
+```
+
+---
+# <h3>Evolución Total de Matriculados y  Programas Académicos por Nivel y Sector de las IES</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_NIVEL_SECTOR
+```
+
+---
+# <h3>Evolución Total de Matriculados por Nivel de Formación - Pregrado</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_NIVEL_PRE 
+```
+
+---
+# <h3>Evolución Total de Programas Académicos por Nivel de Formación - Pregrado</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_PREGRADO 
+```
+
+---
+# <h3>Municipios de Localización de los Prog. Académicos de Pregrado – Periodo 20172 </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+MAP_MUNI_PROG_NIVEL_PRE_172 
+```
+
+---
+# <h3>Evolución Total de Matriculados por Nivel de  formación y Sector de las IES - Pregrado</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_NIVEL_PRE_SECTOR 
+```
+
+---
+# <h3>Evolución Total de Matriculados y Programas Académicos por Nivel de  formación y Sector de las IES - Pregrado</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_PREGRADO_SECTOR 
+```
+
+---
+# <h3>Evolución Total de Matriculados por Nivel de Formación - Postgrado</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_NIVEL_POS 
+```
+
+---
+# <h3>Evolución Total de Matriculados en Doctorado por Sector</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_DOC_SECTOR 
+```
+
+---
+# <h3>Evolución Total de Programas Académicos por Nivel de Formación - Postgrado </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_POSTGRADO 
+```
+
+---
+# <h3>Municipios de Localización de los Prog. Académicos de Postgrado – Periodo 20172</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+MAP_MUNI_PROG_NIVEL_POS_172 
+```
+
+---
+# <h3>Municipios de Localización de los Prog. Académicos de Especialización – Per. 20172</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+MAP_MUNI_PROG_NIVEL_ESP_172 
+```
+
+---
+# <h3>Municipios de Localización de los Prog. Académicos de Maestría – Periodo 20172 </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+MAP_MUNI_PROG_NIVEL_MAES_172 
+```
+
+---
+# <h3>Municipios de Localización de los Prog. Académicos de Doctorado – Periodo 20172 </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+MAP_MUNI_PROG_NIVEL_DOC_172 
+```
+
+---
+# <h3>Evolución Total de Matriculados en Postgrado por Nivel de Formación y Sector</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_NIVEL_POS_SECTOR 
+```
+
+---
+# <h3>Evolución Total de Matriculados y Programas Académicos por Nivel de  formación y Sector de las IES - Postgrado</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_POSTGRADO_SECTOR 
+```
+
+---
+# <h3>Evolución Total de Matriculados por Metodología de Formación</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_METODOLOGIA  
+```
+
+---
+# <h3>Evolución Total de Programas Académicos por Metodología de Formación</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_METODOLOGIA 
+```
+
+---
+# <h3>Evolución Total de Matriculados por Metodología de Formación y Sector</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_METODOLOGIA_SECTOR 
+```
+
+---
+# <h3>Evolución Total de Matriculados en Programas a Distancia</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_METODOLOGIA_DISTANCIA 
+```
+
+---
+# <h3>Evolución Total de Matriculados y Programas Académicos por Metodología de  formación y Sector de las IES</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_METODOLOGIA_SECTOR 
+```
+
+---
+# <h3>Evolución Total de Matriculados por Áreas del Conocimiento</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_AREAS 
+```
+
+---
+# <h3>Evolución Total de Programas Académicos por Áreas del Conocimiento</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_AREAS 
+```
+
+---
+# <h3>Evolución Total de Matriculados por Áreas del Conocimiento y Sector</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_AREAS_SECTOR 
+```
+
+---
+# <h3>Evolución Total de Matriculados y Programas Académicos por Áreas del Conocimiento y Sector</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_AREAS_SECTOR 
+```
+
+---
+# <h3>Evolución Total de Matriculados por Áreas del Conocimiento - Pregrado</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_AREAS_PRE 
+```
+
+---
+# <h3>Evolución Total de Programas Académicos por Áreas del Conocimiento - Pregrado</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_AREAS_PREGRADO 
+```
+
+---
+# <h3>Evolución Total de Matriculados por Áreas del Conocimiento y Sector - Pregrado</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_AREAS_PRE_SECTOR 
+```
+
+---
+# <h3>Evolución Total de Matriculados y Programas Académicos por Áreas del Conocimiento y Sector - Pregrado</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_AREAS_PREGRADO_SECTOR 
+```
+
+---
+# <h3>Evolución Total de Matriculados por Áreas del Conocimiento - Postgrado</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_AREAS_POS 
+```
+
+---
+# <h3>Evolución Total de Programas Académicos por Áreas del Conocimiento - Postgrado</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_AREAS_POSTGRADO 
+```
+
+---
+# <h3>Evolución Total de Matriculados por Áreas del Conocimiento y Sector - Postgrado</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_COBER_AREAS_POS_SECTOR 
+```
+
+---
+# <h3>Evolución Total de Matriculados y Programas Académicos por Áreas del Conocimiento y Sector - Postgrado</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_AREAS_POSTGRADO_SECTOR
 ```

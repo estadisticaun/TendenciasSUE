@@ -589,7 +589,7 @@ PROG_SECTOR <- Matriculados %>% group_by(YEAR, SEMESTRE, SECTOR, SNIES_PROGRAMA)
 GRA_PROG_SECTOR <- PROG_SECTOR %>% ggplot(aes(x = factor(Periodo), y = Total, group = SECTOR, colour = SECTOR))+
   geom_line(size = 1) +
   # ggtitle("Evolución Total de Programas Académicos Por Sector de las IES \n (Periodo 2000-2017) \n") +
-  xlab("\n Periodo") + ylab("Total Programas Académicos\n")+ ylim(0, 7000)+
+  xlab("\n Periodo") + ylab("Total Programas Académicos\n")+ ylim(0, 11000)+
   theme(axis.text.y = element_text(size = 13),
         axis.title.y = element_text(size = 13, face = "bold"),
         axis.text.x = element_text(size = 13, angle = 90),
