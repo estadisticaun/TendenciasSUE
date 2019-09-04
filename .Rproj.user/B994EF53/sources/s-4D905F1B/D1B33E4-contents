@@ -1137,7 +1137,7 @@ GRA_PROG_ACADEMICOS_AREAS <- PROG_ACADEMICOS_AREAS %>% ggplot(aes(x = YEAR, y = 
   theme(plot.title = element_text(hjust = 0.5, size=16, face="bold.italic"),
         axis.title.x = element_text(size=14, face="bold"),
         axis.title.y = element_text(size=14, face="bold"),
-        # legend.position="bottom",
+        legend.position="bottom",
         legend.title = element_text(face = "bold", size = 10),
         legend.text  = element_text(face = "bold", size = 10))
 

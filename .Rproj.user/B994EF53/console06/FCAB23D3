@@ -762,4 +762,152 @@ no changes added to commit (use "git add" and/or "git commit -a")[0K
 [0;32mAlberto@Alberto-HP [0;35m [0;33m~/Documents/ONP/Oficina Nacional de Estadística/Modelo de Financiación SUE/[0KT
 endenciasSUE[0;36m (master)[0m[0K
 $[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git a[0K[?25hd[0Kd[0K[11G[?25l$ git add .[0K[?25h[?25l
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/B994EF53/sources/prop/7EE62B7B.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/B994EF53/sources/prop/E02D43FF.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/B994EF53/sources/s-4D905F1B/9DCEEAC.[0K[?25l
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/B994EF53/sources/s-4D905F1B/9DCEEAC-content[0Ks[?25l
+.[0K
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/B994EF53/sources/s-4D905F1B/1494E9EF-conten[0Kt[?25l
+s.[0K
+The file will have its original line endings in your working directory.[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/B994EF53/sources/s-4D905F1B/33F1A4C8-conten[0Kt[?25l
+s.[0K
+The file will have its original line endings in your working directory.[0K
+[0K[?25h[?25l
+[0;32mAlberto@Alberto-HP [0;35m [0;33m~/Documents/ONP/Oficina Nacional de Estadística/Modelo de Financiación SUE/[0KT
+endenciasSUE[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git c[0K[?25ho[0Km[0Km[0Ki[0Kt[0K[14G[?25l$ git commit -[0K[?25hm[0K[17G[?25l$ git commit -m "[0K[?25hP[0Kr[0Ki[0Km[0Ke[0Kr[0Ka[0K[26G[25G[?25l$ git commit -m "Primer[0K[?25h[?25l$ git commit -m "Prime[0K[?25h[?25l$ git commit -m "Prim[0K[?25h[?25l$ git commit -m "Pri[0K[?25h[?25l$ git commit -m "Pr[0K[?25h[?25l$ git commit -m "P[0K[?25h[?25l$ git commit -m "[0K[?25hP[0Kr[0Ke[0Ks[0Ke[0Kn[0Kt[0Ka[0Kc[0Ki[0Ko[0Kn[0K[31G[?25l$ git commit -m "Presentacion c[0K[?25ho[0Kb[0Ke[0Kr[0Kt[0Ku[0Kr[0Ka[0K[41G[?25l$ git commit -m "Presentacion cobertura f[0K[?25hi[0Kn[0Ka[0Kl[0K[47G[?25l$ git commit -m "Presentacion cobertura final 1[0K[?25h"[0K[?25l
+[0K[?25h[master 895e42b] Presentacion cobertura final 1[0K[?25l
+ 58 files changed, 2905 insertions(+), 62 deletions(-)[0K
+ create mode 100644 .Rproj.user/B994EF53/sources/s-4D905F1B/1494E9EF-contents[0K
+ create mode 100644 .Rproj.user/B994EF53/sources/s-4D905F1B/33F1A4C8-contents[0K
+ delete mode 100644 .Rproj.user/B994EF53/sources/s-4D905F1B/63E185EE[0K
+ rewrite index_files/figure-html/unnamed-chunk-10-1.png (99%)[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-16-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-17-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-18-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-18-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-19-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-20-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-20-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-21-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-22-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-23-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-24-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-25-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-25-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-26-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-27-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-28-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-32-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-33-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-34-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-34-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-35-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-36-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-36-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-37-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-37-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-38-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-38-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-39-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-39-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-40-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-41-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-41-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-42-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-43-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-43-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-44-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-45-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-45-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-46-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-47-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-47-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-48-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-49-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-49-1.png[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-50-1.gif[0K
+ create mode 100644 index_files/figure-html/unnamed-chunk-51-1.gif[0K
+[0K[?25h[?25l
+[0;32mAlberto@Alberto-HP [0;35m [0;33m~/Documents/ONP/Oficina Nacional de Estadística/Modelo de Financiación SUE/[0KT
+endenciasSUE[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git p[0K[?25hu[0Ks[0Kh[0K[12G[?25l$ git push o[0K[?25hr[0Ki[0Kg[0Ki[0Kn[0K[19G[?25l$ git push origin m[0K[?25ha[0Ks[0Kt[0Ke[0Kr[0K[?25l
+[0K[?25herror: cannot spawn sh: No such file or directory[0K[?25l
+error: cannot spawn rpostback-askpass: No such file or directory[0K
+Username for 'https://github.com':[0K[36G[?25h[?25lUsername for 'https://github.com': e[0K[?25hs[0Kt[0Ka[0Kd[0Ki[0Ks[0Kt[0Ki[0Kc[0Ka[0Ku[0Kn[0K[?25l
+error: cannot spawn rpostback-askpass: No such file or directory[0K
+Password for 'https://estadisticaun@github.com':[0K[50G[?25h[?25l
+[0K[?25herror: cannot spawn sh: No such file or directory[0K[?25l
+[0K[?25hCounting objects: 49, done.[0K[?25l
+Delta compression using up to 8 threads.[0K
+Compressing objects:  50% (24/48)[0K[1G[?25h[?25lCompressing objects:  68% (33/48)[0K[1G[?25h[?25lCompressing objects: 100% (48/48)[0K[1G[?25hCompressing objects: 100% (48/48), done.[0K[?25l
+Writing objects:  53% (26/49)[0K[1G[?25h[?25lWriting objects:  71% (35/49)[0K[1G[?25h[?25lWriting objects:  83% (41/49)[0K[1G[?25h[?25lWriting objects:  83% (41/49), 984.00 KiB | 684.00 KiB/s[0K[1G[?25h[?25lWriting objects:  85% (42/49), 984.00 KiB | 684.00 KiB/s[0K[1G[?25h[?25lWriting objects:  91% (45/49), 984.00 KiB | 684.00 KiB/s[0K[1G[?25h[?25lWriting objects:  97% (48/49), 984.00 KiB | 684.00 KiB/s[0K[1G[?25hWriting objects: 100% (49/49), 1.48 MiB | 779.00 KiB/s, done.[0K[?25l
+Total 49 (delta 16), reused 0 (delta 0)[0K
+[0K[?25h[?25lremote: Resolving deltas:   6% (1/16)[0K[1G[?25h[?25lremote: Resolving deltas:  56% (9/16)[0K[1G[?25hremote: Resolving deltas: 100% (16/16), completed with 7 local objects.[0K[?25l
+[0K[?25hremote:[0K[?25l
+remote: GitHub found 2 vulnerabilities on estadisticaun/TendenciasSUE's default branch (2 moder[0Ka
+te). To find out more, visit:[0K
+remote:      https://github.com/estadisticaun/TendenciasSUE/network/alerts[0K
+remote:[0K
+To https://github.com/estadisticaun/TendenciasSUE.git[0K
+   145a108..895e42b  master -> master[0K
+[0K[?25h[?25l
+[0;32mAlberto@Alberto-HP [0;35m [0;33m~/Documents/ONP/Oficina Nacional de Estadística/Modelo de Financiación SUE/[0KT
+endenciasSUE[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git s[0K[?25ht[0Ka[0Kt[0Ku[0Ks[0K[?25l
+[0K[?25hOn branch master[0K[?25l
+Your branch is up-to-date with 'origin/master'.[0K
+[0K
+Changes not staged for commit:[0K
+  (use "git add <file>..." to update what will be committed)[0K
+  (use "git checkout -- <file>..." to discard changes in working directory)[0K
+[0K
+        [0;31mmodified:   .Rproj.user/B994EF53/console06/FCAB23D3[0m[0K[?25h[?25l
+[0K
+no changes added to commit (use "git add" and/or "git commit -a")[0K
+[0K[?25h[?25l
+[0;32mAlberto@Alberto-HP [0;35m [0;33m~/Documents/ONP/Oficina Nacional de Estadística/Modelo de Financiación SUE/[0KT
+endenciasSUE[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git s[0K[?25ht[0Ka[0Kt[0Ku[0Ks[0K[?25l
+[0K[?25hOn branch master[0K[?25l
+Your branch is up-to-date with 'origin/master'.[0K
+[0K
+Changes not staged for commit:[0K
+  (use "git add <file>..." to update what will be committed)[0K
+  (use "git checkout -- <file>..." to discard changes in working directory)[0K
+[0K
+        [0;31mmodified:   .Rproj.user/B994EF53/console06/FCAB23D3[0m[0K
+        [0;31mmodified:   .Rproj.user/B994EF53/sources/prop/7EE62B7B[0m[0K
+        [0;31mmodified:   .Rproj.user/B994EF53/sources/prop/E02D43FF[0m[0K
+        [0;31mmodified:   .Rproj.user/B994EF53/sources/s-4D905F1B/9DCEEAC[0m[0K
+        [0;31mmodified:   .Rproj.user/B994EF53/sources/s-4D905F1B/9DCEEAC-contents[0m[0K
+        [0;31mmodified:   "An\303\241lisis Matriculados.R"[0m[0K
+        [0;31mmodified:   index.Rmd[0m[0K
+        [0;31mmodified:   index.html[0m[0K
+        [0;31mmodified:   index_files/figure-html/unnamed-chunk-51-1.gif[0m[0K
+[0K
+Untracked files:[0K
+  (use "git add <file>..." to include in what will be committed)[0K
+[0K
+        [0;31m.Rproj.user/B994EF53/sources/s-4D905F1B/1EB73F33[0m[0K
+        [0;31m.Rproj.user/B994EF53/sources/s-4D905F1B/1EB73F33-contents[0m[0K
+        [0;31m.Rproj.user/B994EF53/sources/s-4D905F1B/D1B33E4-contents[0m[0K
+        [0;31mindex_files/figure-html/unnamed-chunk-52-1.png[0m[0K
+        [0;31mindex_files/figure-html/unnamed-chunk-53-1.png[0m[0K
+        [0;31mindex_files/figure-html/unnamed-chunk-54-1.png[0m[0K
+        [0;31mindex_files/figure-html/unnamed-chunk-55-1.png[0m[0K
+        [0;31mindex_files/figure-html/unnamed-chunk-56-1.png[0m[0K[?25h[?25l
+        [0;31mindex_files/figure-html/unnamed-chunk-57-1.png[0m[0K
+        [0;31mindex_files/figure-html/unnamed-chunk-58-1.png[0m[0K
+[0K
+no changes added to commit (use "git add" and/or "git commit -a")[0K
+[0K[?25h[?25l
+[0;32mAlberto@Alberto-HP [0;35m [0;33m~/Documents/ONP/Oficina Nacional de Estadística/Modelo de Financiación SUE/[0KT
+endenciasSUE[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git a[0K[?25hd[0Kd[0K[11G[?25l$ git add .[0K[?25h[?25l
 [0K[?25h

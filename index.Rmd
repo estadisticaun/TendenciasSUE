@@ -34,6 +34,12 @@ source("Análisis Matriculados.R", encoding = 'UTF-8')
   4.	<p style="font-size:100%;"> Usar la tecla F5 para retornar a la versión inicial de las diapositivas que contienen mapas e ilustraciones interactivas</p>
 
 ---
+
+class: inverse, middle, center
+
+# Estadísticas Sistema de Educación Superior
+
+---
 # <h3> Evolución Total Instituciones de Educación Superior (IES) </h3>
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
@@ -372,3 +378,65 @@ GRA_COBER_AREAS_POS_SECTOR
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 GRA_PROG_AREAS_POSTGRADO_SECTOR
 ```
+
+---
+# <h3> Evolución Total Matriculados Por Programas Académicos</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_ACADEMICOS_A
+```
+
+---
+# <h3>Evolución Total Matriculados Por Programas Académicos </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_ACADEMICOS
+```
+
+---
+# <h3>Evolución Total Matriculados Por Programas Académicos - por Sector</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_ACADEMICOS_SECTOR
+```
+
+---
+# <h3>Evolución Total Matriculados Por Programas Académicos - por Carácter </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_ACADEMICOS_CARACTER
+```
+
+---
+# <h3>Evolución Total Matriculados Por Programas Académicos - por Metodología</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_ACADEMICOS_METODOLOGIA
+```
+
+---
+# <h3>Evolución Total Matriculados Por Programas Académicos - por Nivel</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_ACADEMICOS_NIVEL
+```
+
+---
+# <h3>Evolución Total Matriculados Por Programas Académicos - por Nivel de Formación</h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_ACADEMICOS_NIVEL_FOR
+```
+
+---
+# <h3>Evolución Total Matriculados Por Programas Académicos - por Áreas del Conocimiento </h3>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+GRA_PROG_ACADEMICOS_AREAS 
+```
+
+---
+
+class: inverse, middle, center
+
+# Estadísticas Sistema Universitario Estatal - SUE

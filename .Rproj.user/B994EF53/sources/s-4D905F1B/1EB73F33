@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1567555833289.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "1EB73F33",
+    "lastKnownWriteTime" : 1567555863,
+    "last_content_update" : 1567555863438,
+    "path" : "~/ONP/Oficina Nacional de Estadística/Modelo de Financiación SUE/TendenciasSUE/Análisis Matriculados.R",
+    "project_path" : "Análisis Matriculados.R",
+    "properties" : {
+        "cursorPosition" : "1136,32",
+        "docOutlineVisible" : "1",
+        "scrollLine" : "1129"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
